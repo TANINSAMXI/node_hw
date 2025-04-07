@@ -1,3 +1,4 @@
 # description of homework
-Створити папку з js файлом, запушити цей проект на github та npm
-Посилання на github та npm надіслати в чаті, або в особисті
+Створіть клас Chat, який наслідує EventEmitter, і має подію message
+
+chat.send('Привіт') → має викликати 'message' з переданим текстом
