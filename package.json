@@ -1,13 +1,26 @@
 {
   "name": "@taninsamxi/node_hw",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/signMessage.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sign": "node src/signMessage.js",
+    "verify": "node src/verifySignature.js"
+  },
+  "dependencies": {
+    "crypto": "^1.0.0"
   },
   "keywords": [],
   "author": "TANINSAMXI",
   "license": "ISC",
   "type": "commonjs",
-  "description": ""
+  "description": "Створіть цифровий підпис і перевірте його",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TANINSAMXI/node_hw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TANINSAMXI/node_hw/issues"
+  },
+  "homepage": "https://github.com/TANINSAMXI/node_hw#readme"
 }
