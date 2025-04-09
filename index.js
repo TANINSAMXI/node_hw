@@ -5,30 +5,31 @@ async function getLargestFile() {
     try {
         const files = await fs.promises.readdir('.');
 
-        let largestFile = null;
-        let largestSize = 0;
+        const fileStats = [];
 
-        const statsPromises = files.map(async (file) => {
+        for (const file of files) {
             const filePath = path.join('.', file);
             try {
                 const stats = await fs.promises.stat(filePath);
-                if (stats.isFile() && stats.size > largestSize) {
-                    largestFile = file;
-                    largestSize = stats.size;
+                if (stats.isFile()) {
+                    fileStats.push({ file, size: stats.size });
                 }
             } catch (err) {
-                console.error('Error', err);
+                console.error(`Error reading file stats: ${file}`, err);
             }
-        });
-
-        await Promise.all(statsPromises);
-
-        if (largestFile) {
-            console.log(`${largestFile}`);
-            console.log(`${largestSize} bytes`);
-        } else {
-            console.log('No files found');
         }
+
+        if (fileStats.length === 0) {
+            console.log('No files found');
+            return;
+        }
+
+        const largest = fileStats.reduce((max, current) =>
+            current.size > max.size ? current : max
+        );
+
+        console.log(`${largest.file}`);
+        console.log(`${largest.size} bytes`);
     } catch (err) {
         console.error('Error reading directory', err);
     }
