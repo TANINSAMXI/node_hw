@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
     res.render('users', { users });
 });
 
-// Запуск сервера
 app.listen(port, () => {
     console.log(` http://localhost:${port}`);
 });
