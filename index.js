@@ -1,2 +1,11 @@
-const message = "Welcome to Node.js"
-alert(message)
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+    res.send(' Node.js & Docker');
+});
+
+app.listen(port, () => {
+    console.log(` http://localhost:${port}`);
+});
