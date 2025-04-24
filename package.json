@@ -9,5 +9,17 @@
   "author": "TANINSAMXI",
   "license": "ISC",
   "type": "commonjs",
-  "description": ""
+  "description": "Реалізуйте базову конфігурацію кластеру для Node.js сервера,\r щоб скористатися всіма ядрами процесора для обробки запитів.\r Переконайтеся, що сервер здатний масштабуватися на кілька ядер.",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TANINSAMXI/node_hw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TANINSAMXI/node_hw/issues"
+  },
+  "homepage": "https://github.com/TANINSAMXI/node_hw#readme"
 }
