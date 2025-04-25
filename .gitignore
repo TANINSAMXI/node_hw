@@ -2,5 +2,6 @@ node_modules
 .idea/
 dist
 .vscode
+.env
 keys/private.key
 keys/public.key
