@@ -1,0 +1,24 @@
+Table Guests {
+  guest_id int [pk]
+  first_name varchar(50)
+  last_name varchar(50)
+  email varchar(100)
+  phone varchar(20)
+}
+
+Table Rooms {
+  room_id int [pk]
+  room_number varchar(10)
+  room_type varchar(50)
+  price decimal(10, 2)
+  status enum('available', 'booked', 'maintenance') [default: 'available']
+}
+
+Table Bookings {
+  booking_id int [pk]
+  guest_id int [ref: > Guests.guest_id]
+  room_id int [ref: > Rooms.room_id]
+  check_in_date date
+  check_out_date date
+  booking_date timestamp [default: 'CURRENT_TIMESTAMP']
+}
