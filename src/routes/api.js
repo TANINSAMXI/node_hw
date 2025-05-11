@@ -41,7 +41,7 @@ router.get('/products/top', async (req, res) => {
 });
 
 router.post('/orders', async (req, res) => {
-    const { items } = req.body; // [{ product, quantity }]
+    const { items } = req.body;
     let total = 0;
 
     for (let item of items) {
