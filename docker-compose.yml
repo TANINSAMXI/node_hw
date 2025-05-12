@@ -1,24 +1,17 @@
-services:
-  mongo:
-    image: mongo
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
 
+services:
   app:
     build: .
-    container_name: node_hw-app
     ports:
       - "3000:3000"
-    volumes:
-      - .:/app
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/mydb
     depends_on:
       - mongo
-    environment:
-      - MONGO_URI=mongodb://localhost:27017/shop
-      - PORT=3000
+    volumes:
+      - .:/app
 
-volumes:
-  mongo_data:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

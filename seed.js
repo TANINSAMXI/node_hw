@@ -1,34 +1,64 @@
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const { Category, Product } = require('./src/models');
+const Category = require('./models/category');
+const Product = require('./models/product');
+const Order = require('./models/order');
 
-dotenv.config();
-mongoose.connect(process.env.MONGO_URI).then(async () => {
-    await Category.deleteMany();
-    await Product.deleteMany();
+const createInitialData = async () => {
+    try {
+        await Category.deleteMany();
+        await Product.deleteMany();
+        await Order.deleteMany();
 
-    const categories = await Category.insertMany([
-        { name: 'Smartphones' },
-        { name: 'TVs' },
-        { name: 'PCs' }
-    ]);
+        const smartphonesCategory = new Category({ name: 'Smartphones' });
+        const tvCategory = new Category({ name: 'TVs' });
+        const pcCategory = new Category({ name: 'PCs' });
+        await smartphonesCategory.save();
+        await tvCategory.save();
+        await pcCategory.save();
 
-    const products = [
-        { name: 'iPhone 14', price: 999, stock: 10, category: categories[0]._id },
-        { name: 'Samsung Galaxy S22', price: 850, stock: 15, category: categories[0]._id },
-        { name: 'Xiaomi 13', price: 600, stock: 20, category: categories[0]._id },
+        const product1 = new Product({
+            name: 'iPhone 13',
+            price: 999,
+            quantity: 50,
+            category: smartphonesCategory._id,
+        });
+        const product2 = new Product({
+            name: 'Samsung Galaxy S21',
+            price: 799,
+            quantity: 30,
+            category: smartphonesCategory._id,
+        });
+        const product3 = new Product({
+            name: 'MacBook Pro',
+            price: 1999,
+            quantity: 15,
+            category: pcCategory._id,
+        });
+        const product4 = new Product({
+            name: 'LG OLED TV',
+            price: 1200,
+            quantity: 20,
+            category: tvCategory._id,
+        });
+        await product1.save();
+        await product2.save();
+        await product3.save();
+        await product4.save();
 
-        { name: 'LG OLED CX', price: 1200, stock: 5, category: categories[1]._id },
-        { name: 'Samsung QLED Q60', price: 1000, stock: 8, category: categories[1]._id },
-        { name: 'Sony Bravia XR', price: 1100, stock: 6, category: categories[1]._id },
+        const order1 = new Order({
+            products: [product1._id, product2._id],
+            totalPrice: 1798,
+        });
+        const order2 = new Order({
+            products: [product3._id, product4._id],
+            totalPrice: 3199,
+        });
+        await order1.save();
+        await order2.save();
 
-        { name: 'MacBook Pro', price: 2000, stock: 4, category: categories[2]._id },
-        { name: 'Dell XPS 13', price: 1500, stock: 7, category: categories[2]._id },
-        { name: 'Lenovo Legion 5', price: 1300, stock: 10, category: categories[2]._id }
-    ];
+        console.log('Initial data has been added!');
+    } catch (error) {
+        console.error('Error during initial data creation:', error);
+    }
+};
 
-    await Product.insertMany(products);
-
-    console.log('Database seeded');
-    process.exit();
-});
+module.exports = createInitialData;
