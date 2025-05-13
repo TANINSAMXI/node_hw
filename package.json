@@ -1,7 +1,7 @@
 {
   "name": "@taninsamxi/node_hw",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,5 +9,20 @@
   "author": "TANINSAMXI",
   "license": "ISC",
   "type": "commonjs",
-  "description": ""
+  "description": "Реалізуй просту форму логін",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.14.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TANINSAMXI/node_hw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TANINSAMXI/node_hw/issues"
+  },
+  "homepage": "https://github.com/TANINSAMXI/node_hw#readme"
 }
