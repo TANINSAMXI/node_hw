@@ -53,14 +53,14 @@ describe('Full Authorization', () => {
             email: 'john@example.com',
             password: '123456',
         };
-        await createUser(userData);  // Сначала создаем пользователя
+        await createUser(userData);
 
         const token = await loginUser({
             email: 'john@example.com',
             password: '123456',
         });
 
-        expect(token).toBeDefined();  // Проверяем, что токен получен
+        expect(token).toBeDefined();
     });
 
     it('Access to /profile with token', async () => {

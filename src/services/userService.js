@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const Order = require('../models/orderModel');
 
-// Створення користувача
 const createUser = async ({ name, email, password }) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ name, email, password: hashedPassword });
